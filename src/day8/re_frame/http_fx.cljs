@@ -1,5 +1,6 @@
 (ns day8.re-frame.http-fx
   (:require
+    [goog.events :as e]
     [goog.net.ErrorCode :as errors]
     [re-frame.core :refer [reg-fx dispatch console]]
     [ajax.core :as ajax]
@@ -38,11 +39,14 @@
 
 (defn request->xhrio-options
   [{:as   request
-    :keys [on-success on-failure]
+    :keys [on-success on-failure on-progress]
     :or   {on-success      [:http-no-on-success]
            on-failure      [:http-no-on-failure]}}]
   ; wrap events in cljs-ajax callback
   (let [api (new js/goog.net.XhrIo)]
+    (when on-progress
+      (.setProgressEventsEnabled api true)
+      (e/listen api goog.net.EventType.PROGRESS #(dispatch (conj on-progress %))))
     (-> request
         (assoc
           :api     api
@@ -50,7 +54,7 @@
                             #(dispatch (conj on-success %))
                             #(dispatch (conj on-failure %))
                             api))
-        (dissoc :on-success :on-failure))))
+        (dissoc :on-success :on-failure :on-progress))))
 
 ;; Specs commented out until ClojureScript has a stable release of spec.
 ;
