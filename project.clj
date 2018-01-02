@@ -1,4 +1,4 @@
-(defproject healthunlocked/http-fx "0.1.5-oops"
+(defproject healthunlocked/http-fx "0.1.6"
   :description  "A re-frame effects handler for performing Ajax tasks"
   :url          "https://github.com/Day8/re-frame-http-fx.git"
   :license      {:name "MIT"}
