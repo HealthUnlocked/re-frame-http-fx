@@ -1,4 +1,4 @@
-(defproject day8.re-frame/http-fx "0.1.5-SNAPSHOT"
+(defproject day8.re-frame/http-fx "0.1.7"
   :description  "A re-frame effects handler for performing Ajax tasks"
   :url          "https://github.com/Day8/re-frame-http-fx.git"
   :license      {:name "MIT"}
@@ -10,7 +10,7 @@
   :profiles {:debug {:debug true}
              :dev   {:dependencies [[karma-reporter     "1.0.1"]
                                     [binaryage/devtools "0.8.1"]]
-                     :plugins      [[lein-ancient       "0.6.10"]
+                     :plugins      [[lein-ancient       "0.6.15"]
                                     [lein-cljsbuild     "1.1.4"]
                                     [lein-npm           "0.6.2"]
                                     [lein-shell         "0.5.0"]]}}
